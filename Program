@@ -1,0 +1,376 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+  
+  
+    public static void main(String[] args) {
+     
+    Student start = new Student();
+
+    start.Option1();
+
+}
+}
+ 
+
+
+
+
+
+
+  class Student
+  {
+
+// 2D ArrayList of Integer type
+static ArrayList <String> StudentID = new ArrayList <>();
+static ArrayList <String> StudentName = new ArrayList <>();
+static ArrayList <Integer> StudentAge = new ArrayList <>();
+static ArrayList <String> StudentEmail = new ArrayList <>();
+static ArrayList <String> StudentCourse = new ArrayList <>();
+
+static String id;
+static String name;
+static int age;
+static String email;
+static String course;
+
+public static int Option1;
+public static int Option2;
+
+//GET SET
+private String ID; 
+private String Name;
+private Integer Age;
+private String Email;
+private String Course;// private = restricted access
+
+
+public static void Option1()
+{
+  System.out.println("STUDENT MANAGEMENT APPLICATION");
+  System.out.println("******************************");
+  System.out.println("Enter (1) to launch menu or any other key to exit:");
+  Scanner scanner1 = new Scanner(System.in);
+  Option1 = Integer.parseInt(scanner1.nextLine());
+
+  if(Option1==1)
+  {
+    Student Navigation = new Student();
+
+  Navigation.Menu();
+  }
+  if(Option1 !=1)
+  {
+    System.exit(0); 
+  }
+}
+
+
+public static void Menu()
+{
+  System.out.println("Please select one of the following menu items:");
+  System.out.println("(1) Capture a new student.");
+  System.out.println("(2) Search for a student.");
+  System.out.println("(3) Delete a student.");
+  System.out.println("(4) Print a student report.");
+  System.out.println("(5) Exit Application.");
+  Scanner menu = new Scanner(System.in);
+  Option2 = Integer.parseInt(menu.nextLine());
+if(Option2==1)
+{
+  Student Navigation = new Student();
+
+  Navigation.Create();
+  
+}
+if(Option2==2)
+{
+    Student Navigation = new Student();
+
+  Navigation.Search();
+  
+}
+if(Option2==3)
+{
+    Student Navigation = new Student();
+
+  Navigation.Delete();
+  
+}
+if(Option2==4)
+{
+    Student Navigation = new Student();
+
+  Navigation.Report();
+  
+}
+if(Option2==5)
+{
+    Student Navigation = new Student();
+
+  Navigation.Exit();
+}
+}
+
+
+public static void Create()
+{
+  System.out.println("CAPTURE A NEW STUDENT");
+  System.out.println("***************************");
+  System.out.println("Enter the student ID:");
+  Scanner scannerID = new Scanner(System.in);
+  id = scannerID.nextLine();
+  System.out.println("Enter the student name:");
+  Scanner scannerName = new Scanner(System.in);
+  name = scannerName.nextLine();
+
+  //System.out.println("Enter the student age:");
+  Scanner scannerAge = new Scanner(System.in);
+ // age = Integer.parseInt(scannerAge.nextLine());
+
+ 
+
+  do {
+    System.out.println("Enter the student age:");
+      while (!scannerAge.hasNextInt()) {
+          System.out.println("Invalid input! Please enter an integer.");
+          scannerAge.next(); // Consume the invalid input
+      }
+      age = scannerAge.nextInt();
+  } while (age == 0); // Adjust the condition as 
+
+
+  System.out.println("Enter the student email:");
+  Scanner scannerEmail = new Scanner(System.in);
+  email = scannerEmail.nextLine();
+  System.out.println("Enter the student course:");
+  Scanner scannerCourse = new Scanner(System.in);
+  course = scannerCourse.nextLine();
+
+  //Muzzi:Adding students information into the Array.
+  StudentID.add(id);
+  StudentName.add(name);
+
+
+  StudentAge.add(age);
+
+
+
+  StudentEmail.add(email);
+  StudentCourse.add(course);
+
+
+
+  Student A = new Student();
+  A.setSaveStudent(id, name, age, email, course);
+
+
+
+  System.out.println(A.getSaveStudent());
+  System.out.println(" "+ StudentID);
+
+  System.out.println("Enter 1 to go back to the Menu:");
+  Scanner menu = new Scanner(System.in);
+  int choice = Integer.parseInt(menu.nextLine());
+  if(choice ==1)
+  {
+    A.Menu();
+  }
+}
+
+
+
+
+
+
+
+public static void Search()
+{
+ //Search for the Student
+ System.out.println("Enter Student ID to search:");
+ System.out.println("***************************");
+ Scanner SearchID = new Scanner(System.in);
+ String searchID = SearchID.nextLine();
+
+ Student A = new Student();
+ A.setSearchStudent(searchID);
+
+ 
+
+ int index2 = StudentID.indexOf(searchID);
+if(StudentID.contains(searchID) == true)
+{
+  System.out.println("ID:" + StudentID.get(index2));
+  System.out.println("Name:" + StudentName.get(index2));
+  System.out.println("Age:" + StudentAge.get(index2));
+  System.out.println("Email:" + StudentEmail.get(index2));
+  System.out.println("Course:" + StudentCourse.get(index2));
+
+}
+
+else{
+  System.out.println("No results found!");
+}
+ 
+
+
+
+
+
+
+ System.out.println("Enter 1 to go back to the Menu:");
+  Scanner goback = new Scanner(System.in);
+  int menu = Integer.parseInt(goback.nextLine());
+  if(menu ==1)
+  {
+    A.Menu();
+  }
+}
+
+
+
+
+
+
+public static void Delete()
+{
+ //Search for the Student
+ System.out.println("Enter Student ID to Delete:");
+ System.out.println("***************************");
+ Scanner scannerSearchID = new Scanner(System.in);
+ String deleteID = scannerSearchID.nextLine();
+
+
+ int index2 = StudentID.indexOf(deleteID);
+
+ Student A = new Student();
+ A.setSearchStudent(deleteID);
+
+ System.out.println("Are you sure you want to delete " + StudentName.get(index2) +" from the system, Enter '1' to confirm or '2' to cancel.");
+ Scanner YorN = new Scanner(System.in);
+ int choice = Integer.parseInt(YorN.nextLine());
+
+ if(choice==1)
+ {
+ //int index = Student.indexOf('1');
+ // Student.remove(0);
+  StudentID.remove(index2);
+  StudentName.remove(index2);
+  StudentAge.remove(index2);
+  StudentEmail.remove(index2);
+  StudentCourse.remove(index2);
+
+
+  System.out.println("ID:" + deleteID  +"= Removed");
+  System.out.println("Name:" +"= Removed");
+  System.out.println("Age:" +"= Removed");
+  System.out.println("Email:" +"= Removed");
+  System.out.println("Course:" +"= Removed");
+
+  System.out.println("Enter 1 to go back to the Menu:");
+  Scanner goback = new Scanner(System.in);
+  int menu = Integer.parseInt(goback.nextLine());
+  if(menu ==1)
+  {
+    A.Menu();
+  }
+ }
+ if(choice==2)
+ {
+  System.out.println("Canceled, Enter 1 to return to Main Menu.");
+  Scanner goback = new Scanner(System.in);
+  int menu = Integer.parseInt(goback.nextLine());
+  if(menu ==1)
+  {
+    A.Menu();
+  }
+ }
+
+
+
+}
+
+
+public static void Report()
+{
+ //Search for the Student
+ System.out.println("Report:");
+ System.out.println("***************************");
+ 
+ Student A = new Student();
+ for (int i = 0; i < A.StudentID.size(); i++) {
+ 
+  
+  System.out.println("ID:"+A.StudentID.get(i));
+  System.out.println("Name:"+A.StudentName.get(i));
+  System.out.println("Age:"+A.StudentAge.get(i));
+  System.out.println("Email:"+A.StudentEmail.get(i));
+  System.out.println("Course:"+A.StudentCourse.get(i));
+  System.out.println("***********************");
+}
+
+ System.out.println("Enter 1 to go back to the Menu:");
+  Scanner Back = new Scanner(System.in);
+  int menu = Integer.parseInt(Back.nextLine());
+  if(menu ==1)
+  {
+    A.Menu();
+}
+}
+
+
+
+public static void Exit()
+{
+  System.exit(0);
+}
+
+
+
+
+//SaveStudent
+     
+
+     
+
+     // Getter
+     public String getSaveStudent() {
+
+       return ID + Name + Age + Email + Course;
+       
+     }
+   
+     // Setter
+     public void setSaveStudent(String ID,String Name, Integer Age, String Email, String Course) {
+     
+
+this.ID = ID;
+this.Name = Name;
+this.Age = Age;
+this.Email = Email;
+this.Course = Course;
+
+     }
+
+//SearchStudent
+ 
+ // Getter
+ public String getSearchStudent() {
+  
+StudentID.contains(searchID);
+return ID;
+  
+ }
+ private String searchID;
+ // Setter
+ public void setSearchStudent(String ID) {
+  
+   this.searchID = ID;
+ }
+
+
+  }
+
+
+ 
