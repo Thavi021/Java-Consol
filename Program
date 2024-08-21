@@ -241,6 +241,35 @@ public static void Delete()
  Scanner scannerSearchID = new Scanner(System.in);
  String deleteID = scannerSearchID.nextLine();
 
+ if(StudentID.contains(deleteID) == true)
+ {
+   System.out.println("Found!");
+ 
+ }
+ else
+ {
+  System.out.println("Search Failed!");
+  System.out.println("Enter Student ID to Delete:");
+  System.out.println("***************************");
+  deleteID = scannerSearchID.nextLine();
+
+  if(StudentID.contains(deleteID) == true)
+  {
+    System.out.println("Found!");
+  
+  }
+  else
+  {
+   System.out.println("Search Failed!");
+   System.out.println("Enter Student ID to Delete:");
+   System.out.println("***************************");
+   deleteID = scannerSearchID.nextLine();
+  }
+ }
+
+
+
+
 
  int index2 = StudentID.indexOf(deleteID);
 
